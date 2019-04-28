@@ -1,0 +1,20 @@
+PODS:
+  - SwiftyJSON (4.3.0)
+  - TinyConstraints (4.0.0)
+
+DEPENDENCIES:
+  - SwiftyJSON (~> 4.0)
+  - TinyConstraints
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SwiftyJSON
+    - TinyConstraints
+
+SPEC CHECKSUMS:
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  TinyConstraints: 03bc091844b98c18dbaead8b1153242a42721b56
+
+PODFILE CHECKSUM: 2c2921f89740eac342f88e22b71c6251615931cd
+
+COCOAPODS: 1.6.0
