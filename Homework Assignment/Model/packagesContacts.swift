@@ -23,9 +23,6 @@ protocol getFavoritePackagesProtocol: class {
     func favoriteJSON ( json: JSON )
 }
 
-protocol getPackagesProtocol : class {
-    func packagesJSON ( json: [JSON] )
-}
 
 protocol sortPackagesProtocol : class {
     func sortType(index: Int)

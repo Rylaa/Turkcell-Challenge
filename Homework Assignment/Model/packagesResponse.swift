@@ -15,27 +15,12 @@ final class packagesResponse {
     public let service = packagesService()
     static let shared = packagesResponse()
     
-    func getPackages() {
+    func getPackages( completion: @escaping ( [JSON] ) ->  Void) {
         if let path = Bundle.main.path(forResource: "packageList", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
                 let json = try JSON(data: data)
-                var packagesfavoriteJSON : [JSON] = []
-                var packagesJson : [JSON] = []
-                let arrayNames = json["packages"]
-                
-                for i in 0...json["packages"].arrayValue.count-1 {
-                    if arrayNames[i]["didUseBefore"] == false {
-                        packagesJson.append(arrayNames[i])
-                    } else {
-                        packagesfavoriteJSON.append(arrayNames[i])
-                    }
-                }
-                
-                service.packagesJSON(json: packagesJson)
-            //    service.favoriteJSON(json: packagesfavoriteJSON)
-                saveFavoritePackages.shared.saveFavorite(json: packagesfavoriteJSON)
-                
+                completion([json])
             } catch let error {
                 print(error.localizedDescription)
             }

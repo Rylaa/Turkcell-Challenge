@@ -11,14 +11,24 @@ import SwiftyJSON
 import UIKit
 
 final class saveFavoritePackages {
-    
     static let shared = saveFavoritePackages()
-    
-    public func saveFavorite(json: [JSON]) {
-        let jsonString = String(describing: json)
-        UserDefaults.standard.removeObject(forKey: "FavoritePackages")
-        UserDefaults.standard.set(jsonString, forKey: "FavoritePackages")
+    public func saveFavorite(favoritePackage: [Package]) {
+        if let data = UserDefaults.standard.data(forKey: "SavedItemArray") { // oku
+            var Result = try! PropertyListDecoder().decode([Package].self, from: data)
+            let check = Result.filter({ $0.name == favoritePackage[0].name }).count
+            if check == 0 {
+                Result.append(favoritePackage[0])
+            }
+            if let data = try? PropertyListEncoder().encode(Result) {
+                UserDefaults.standard.set(data, forKey: "SavedItemArray")
+            }
+        } else {
+            if let data = try? PropertyListEncoder().encode(favoritePackage) {
+                UserDefaults.standard.set(data, forKey: "SavedItemArray")
+            }
+        }
     }
 }
+
 
 

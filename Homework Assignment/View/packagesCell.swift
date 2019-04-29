@@ -8,6 +8,7 @@
 
 import UIKit
 import TinyConstraints
+
 class packagesCell : UITableViewCell {
     // -  Properties
     lazy var packageNameLabel : UILabel = {
@@ -22,7 +23,7 @@ class packagesCell : UITableViewCell {
         var lbl                       = UILabel()
         lbl.font                      = UIFont.systemFont(ofSize: 10)
         lbl.textColor                 = .white
-    
+        
         lbl.adjustsFontSizeToFitWidth = true
         lbl.numberOfLines             = 0
         return lbl
@@ -64,7 +65,6 @@ class packagesCell : UITableViewCell {
         lbl.numberOfLines             = 0
         return lbl
     }()
-
     lazy var sms : UILabel = {
         var lbl                       = UILabel()
         lbl.font                      = UIFont.systemFont(ofSize: 20, weight: .semibold)
@@ -82,7 +82,7 @@ class packagesCell : UITableViewCell {
         lbl.textAlignment             = NSTextAlignment.left
         lbl.adjustsFontSizeToFitWidth = true
         lbl.numberOfLines             = 0
-      
+        
         return lbl
     }()
     lazy var talk : UILabel = {
@@ -104,10 +104,6 @@ class packagesCell : UITableViewCell {
         lbl.numberOfLines             = 0
         return lbl
     }()
-
-    
-    
-    
     lazy var backgroundImage : UIImageView =  {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "Background")
@@ -117,7 +113,14 @@ class packagesCell : UITableViewCell {
         let view = UIView()
         return view
     }()
- 
+    lazy var favoriteBtn : UIButton = {
+        var btn = UIButton(type: .system)
+        btn.setImage(#imageLiteral(resourceName: "rib"), for: .normal)
+        btn.frame = CGRect(x: 0, y: 0, width: 20, height: 80)
+      
+        return btn
+        
+    }()
     // -   Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -138,26 +141,30 @@ class packagesCell : UITableViewCell {
         BGview.addSubview(smsVal)
         BGview.addSubview(talkVal)
         BGview.addSubview(packageDescLabel)
+        BGview.addSubview(favoriteBtn)
         
         packageNameLabel.top(to: backgroundImage, offset: 15)
         packageNameLabel.left(to: backgroundImage, offset : 10)
-        packageNameLabel.rightToSuperview()
+        packageNameLabel.width(UIScreen.main.bounds.width*0.5)
+        
+        favoriteBtn.top(to: self, offset: +5)
+        favoriteBtn.leftToRight(of: packageNameLabel)
+        favoriteBtn.right(to: self, offset: -15)
+        favoriteBtn.width(UIScreen.main.bounds.width*0.1)
+        favoriteBtn.height(50)
+       
         
         packagePriceLabel.topToBottom(of: packageNameLabel)
         packagePriceLabel.left(to: self, offset: 15)
         packagePriceLabel.width(UIScreen.main.bounds.width*0.5)
         
-        
         packageType.topToBottom(of: packagePriceLabel)
         packageType.left(to: self, offset: 15)
         packageType.width(UIScreen.main.bounds.width*0.5)
         
-
         data.topToBottom(of: packageNameLabel, offset: +5)
         data.leftToRight(of: packagePriceLabel,offset: +5)
         data.width(UIScreen.main.bounds.width*0.13)
-       
-        
         
         sms.topToBottom(of: packageNameLabel, offset: +5)
         sms.leftToRight(of: data)
@@ -167,14 +174,14 @@ class packagesCell : UITableViewCell {
         talk.leftToRight(of: sms)
         talk.width(UIScreen.main.bounds.width*0.13)
         
-    
         dataVal.topToBottom(of: data  )
         dataVal.leftToRight(of: packagePriceLabel ,offset: +5 )
         dataVal.width(UIScreen.main.bounds.width*0.13)
+        
         smsVal.topToBottom(of: sms)
         smsVal.leftToRight(of: dataVal)
         smsVal.width(UIScreen.main.bounds.width*0.13)
-      
+        
         talkVal.topToBottom(of: talk)
         talkVal.leftToRight(of: smsVal)
         talkVal.width(UIScreen.main.bounds.width*0.13)
@@ -185,6 +192,7 @@ class packagesCell : UITableViewCell {
         packageDescLabel.height(UIScreen.main.bounds.width*0.1)
         
     }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

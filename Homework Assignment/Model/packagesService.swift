@@ -12,36 +12,31 @@ import Foundation
 import SwiftyJSON
 
 final class packagesService {
-    
-  
- static var packagesJsonArray : [JSON] = []
-    
+    // gives the favorite packages
     func fetchFavotePackages(completion: @escaping ([Package]) -> Void) {
-        // OKUMA
-        packagesResponse.shared.getPackages()
-        let jsonString = UserDefaults.standard.string(forKey: "FavoritePackages")
-        let decoder = JSONDecoder()
-        let data = try! JSON(data: (jsonString?.data(using: .utf8))!)
-        let Result = try! decoder.decode([Package].self, from: data.rawData())
-        completion(Result)
+        if let data = UserDefaults.standard.data(forKey: "SavedItemArray") {
+            let Result = try! PropertyListDecoder().decode([Package].self, from: data)
+            completion(Result)
+        }
     }
-    
+    // gives the packages
     func fetchPackagesList(completion: @escaping ([Package]) -> Void) {
+        if let path = Bundle.main.path(forResource: "packageList", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+                let json = try JSON(data: data)
+                let decoder = JSONDecoder()
+                let arrayNames = String(describing:  json["packages"])
+                let Result = try? decoder.decode([Package].self, from: arrayNames.data(using: .utf8)!)
+                if let res = Result {
+                    completion(res)
+                }
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
         
-        
-        packagesResponse.shared.getPackages()
-        let jsonString = String(describing: packagesService.packagesJsonArray)
-        let decoder = JSONDecoder()
-        let Result = try? decoder.decode([Package].self, from: jsonString.data(using: .utf8)!)
-        completion(Result!)
     }
 }
 
-extension packagesService : getPackagesProtocol {
-
-    func packagesJSON(json: [JSON]) {
-       
-        packagesService.packagesJsonArray =  json
-    }
-}
 
