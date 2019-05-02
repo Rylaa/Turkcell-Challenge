@@ -13,7 +13,7 @@ import UIKit
 final class saveFavoritePackages {
     static let shared = saveFavoritePackages()
     public func saveFavorite(favoritePackage: [Package]) {
-        if let data = UserDefaults.standard.data(forKey: "SavedItemArray") { // oku
+        if let data = UserDefaults.standard.data(forKey: "SavedItemArray") {
             var Result = try! PropertyListDecoder().decode([Package].self, from: data)
             let check = Result.filter({ $0.name == favoritePackage[0].name }).count
             if check == 0 {

@@ -19,6 +19,8 @@ final class packagesService {
             completion(Result)
         }
     }
+    
+    
     // gives the packages
     func fetchPackagesList(completion: @escaping ([Package]) -> Void) {
         if let path = Bundle.main.path(forResource: "packageList", ofType: "json") {
@@ -35,7 +37,6 @@ final class packagesService {
                 print(error.localizedDescription)
             }
         }
-        
     }
 }
 

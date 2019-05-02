@@ -27,3 +27,7 @@ protocol getFavoritePackagesProtocol: class {
 protocol sortPackagesProtocol : class {
     func sortType(index: Int)
 }
+
+protocol addFavoritePackages {
+    func addPackages(selectedRow: [Package])
+}

@@ -30,9 +30,7 @@ class packagesListViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.9413685203, green: 0.8570379615, blue: 0.03474674374, alpha: 1)
         let play = UIBarButtonItem(customView: barButton)
         navigationItem.rightBarButtonItem =  play
-        
         barButton.addTarget(self, action: #selector(onSheetTapped), for: .touchUpInside)
-        
         self.view.addSubview(packageView)
         packageView.edgesToSuperview()
         
@@ -43,8 +41,7 @@ class packagesListViewController: UIViewController {
         service.fetchPackagesList { (Package) in
             self.packageView.updatePackageList(packageList: Package)
         }
-        
-    
+        packageView.setLoading(isLoading: true)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

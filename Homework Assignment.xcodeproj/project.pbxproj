@@ -12,8 +12,6 @@
 		DD23313A226FC904008BA8CA /* saveFavoritePackages.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD233139226FC904008BA8CA /* saveFavoritePackages.swift */; };
 		DD63F2A12271B31400AD0419 /* packagesContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD63F2A02271B31400AD0419 /* packagesContacts.swift */; };
 		DDD1BF232271255F00343263 /* packagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD1BF222271255F00343263 /* packagesService.swift */; };
-		DDD1BF25227127A700343263 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD1BF24227127A700343263 /* Error.swift */; };
-		DDD1BF27227127DE00343263 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD1BF26227127DE00343263 /* Result.swift */; };
 		DDD7C39122747E7B00C13C24 /* packagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD7C39022747E7B00C13C24 /* packagesCell.swift */; };
 		DDEE5BCB226DEC2A00448CCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEE5BCA226DEC2A00448CCC /* AppDelegate.swift */; };
 		DDEE5BCD226DEC2A00448CCC /* packagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEE5BCC226DEC2A00448CCC /* packagesListViewController.swift */; };
@@ -24,7 +22,6 @@
 		DDEE5BFE226DED3600448CCC /* packageList.json in Resources */ = {isa = PBXBuildFile; fileRef = DDEE5BFD226DED3500448CCC /* packageList.json */; };
 		DDEE5C00226E806400448CCC /* packagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEE5BFF226E806400448CCC /* packagesListView.swift */; };
 		DDEE5C02226E810E00448CCC /* packagesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEE5C01226E810E00448CCC /* packagesAPI.swift */; };
-		DDEE5C08226F18FF00448CCC /* packagesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEE5C07226F18FF00448CCC /* packagesResponse.swift */; };
 		EF0008A066531D94FAD5B526 /* Pods_Homework_AssignmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BCBDDC13BAE65E65D25913 /* Pods_Homework_AssignmentUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,8 +54,6 @@
 		DD233139226FC904008BA8CA /* saveFavoritePackages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveFavoritePackages.swift; sourceTree = "<group>"; };
 		DD63F2A02271B31400AD0419 /* packagesContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = packagesContacts.swift; sourceTree = "<group>"; };
 		DDD1BF222271255F00343263 /* packagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = packagesService.swift; sourceTree = "<group>"; };
-		DDD1BF24227127A700343263 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		DDD1BF26227127DE00343263 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		DDD7C39022747E7B00C13C24 /* packagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = packagesCell.swift; sourceTree = "<group>"; };
 		DDEE5BC7226DEC2A00448CCC /* Homework Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Homework Assignment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDEE5BCA226DEC2A00448CCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,7 +70,6 @@
 		DDEE5BFD226DED3500448CCC /* packageList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = packageList.json; sourceTree = "<group>"; };
 		DDEE5BFF226E806400448CCC /* packagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = packagesListView.swift; sourceTree = "<group>"; };
 		DDEE5C01226E810E00448CCC /* packagesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = packagesAPI.swift; sourceTree = "<group>"; };
-		DDEE5C07226F18FF00448CCC /* packagesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = packagesResponse.swift; sourceTree = "<group>"; };
 		E677604D1B321587F6FC1BBD /* Pods-Homework Assignment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Homework Assignment.release.xcconfig"; path = "Target Support Files/Pods-Homework Assignment/Pods-Homework Assignment.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				DDEE5C01226E810E00448CCC /* packagesAPI.swift */,
-				DDEE5C07226F18FF00448CCC /* packagesResponse.swift */,
 				DD233139226FC904008BA8CA /* saveFavoritePackages.swift */,
 				DDD1BF222271255F00343263 /* packagesService.swift */,
 			);
@@ -203,8 +196,6 @@
 		DDEE5BF9226DEC5B00448CCC /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				DDD1BF24227127A700343263 /* Error.swift */,
-				DDD1BF26227127DE00343263 /* Result.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -484,9 +475,6 @@
 				DD23313A226FC904008BA8CA /* saveFavoritePackages.swift in Sources */,
 				DD63F2A12271B31400AD0419 /* packagesContacts.swift in Sources */,
 				DDD7C39122747E7B00C13C24 /* packagesCell.swift in Sources */,
-				DDD1BF27227127DE00343263 /* Result.swift in Sources */,
-				DDD1BF25227127A700343263 /* Error.swift in Sources */,
-				DDEE5C08226F18FF00448CCC /* packagesResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,34 +18,30 @@ class packagesListView : UIView  {
     private var packagesFavoriteArray   : [Package] = []
     private var searchPackages          : [Package] = []
     private var searchFavoritePackages  : [Package] = []
-    private var searching = false
-    private var sorting   = false
-    private let cellID = "cell"
-    let service  = packagesService()
-    lazy var tableView = UITableView()
-    lazy var searchBar : UISearchBar = {
-        var search = UISearchBar()
-        search.searchBarStyle = UISearchBar.Style.prominent
-        search.placeholder = " Search..."
+    private var searching                = false
+    private var sorting                  = false
+    private let cellID                   = "cell"
+    let service                          = packagesService()
+    lazy var tableView                   = UITableView()
+    lazy var searchBar                   : UISearchBar = {
+        var search                       = UISearchBar()
+        search.searchBarStyle  = UISearchBar.Style.prominent
+        search.placeholder     = " Search..."
         search.sizeToFit()
-        search.isTranslucent = false
-        
-        search.barTintColor = #colorLiteral(red: 0.9413685203, green: 0.8570379615, blue: 0.03474674374, alpha: 1)
-        
+        search.isTranslucent   = false
+        search.barTintColor    = #colorLiteral(red: 0.9413685203, green: 0.8570379615, blue: 0.03474674374, alpha: 1)
         search.backgroundColor = #colorLiteral(red: 0.9413685203, green: 0.8570379615, blue: 0.03474674374, alpha: 1)
         return search
     }()
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         self.backgroundColor = .white
         addSubview(searchBar)
         addSubview(tableView)
         searchBar.top(to: self, offset: UIScreen.main.bounds.height*0.1)
         searchBar.width(UIScreen.main.bounds.width)
         searchBar.delegate = self
-        
         tableView.topToBottom(of: searchBar)
         tableView.width(UIScreen.main.bounds.width)
         tableView.height(UIScreen.main.bounds.height*0.9)
@@ -81,6 +77,7 @@ extension packagesListView : UITableViewDataSource {
         let searchinFavoriteArray   = searchFavoritePackages.count
         let searchPackagesArray     = searchPackages.count
         let packagesListCount       = packagesListArray.count
+        
         if searching || sorting {
             let count = section == 0 && searchinFavoriteArray > 0 ? searchinFavoriteArray : searchPackagesArray
             return count
@@ -150,7 +147,6 @@ extension packagesListView : UITableViewDataSource {
                 cell.packageDescLabel.text   = packagesFavoriteArray[indexPath.row].desc
             } else {
                 cell.favoriteBtn.tintColor   = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-                cell.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                 cell.packageNameLabel.text   = packagesListArray[indexPath.row].name
                 cell.packagePriceLabel.text  = "\(packagesListArray[indexPath.row].price) TL"
                 cell.packageType.text        = packagesListArray[indexPath.row].subscriptionType.rawValue.uppercased()
@@ -160,13 +156,12 @@ extension packagesListView : UITableViewDataSource {
                 cell.packageDescLabel.text   = packagesListArray[indexPath.row].desc
             }
         }
-        
+        setLoading(isLoading: false)
         return cell
     }
     @objc func saveFavorite(sender: UIButton) {
         if searching || sorting {
             saveFavoritePackages.shared.saveFavorite(favoritePackage: [searchPackages[sender.tag]])
-            print("\(searchPackages[sender.tag])")
         }else {
             saveFavoritePackages.shared.saveFavorite(favoritePackage: [packagesListArray[sender.tag]])
         }
@@ -202,14 +197,11 @@ extension packagesListView : UITableViewDelegate {
     }
 }
 
-
-
 extension packagesListView :  favoritePackagesListProtocol, packagesListProtocol {
-    // Sorting
     func filterPackges(packageList: [Package], with fav  : Bool ) {
-        let yearly = packageList.filter({ $0.subscriptionType.rawValue ==  "yearly" }).sorted(by: { $1.price < $0.price })
+        let yearly  = packageList.filter({ $0.subscriptionType.rawValue ==  "yearly" }).sorted(by: { $1.price < $0.price })
         let monthly = packageList.filter({ $0.subscriptionType.rawValue ==  "monthly" }).sorted(by: { $1.price < $0.price })
-        let weekly = packageList.filter({ $0.subscriptionType.rawValue ==  "weekly" }).sorted(by: { $1.price < $0.price })
+        let weekly  = packageList.filter({ $0.subscriptionType.rawValue ==  "weekly" }).sorted(by: { $1.price < $0.price })
         
         if fav {
             if sorting || searching {
@@ -228,7 +220,6 @@ extension packagesListView :  favoritePackagesListProtocol, packagesListProtocol
             self.packagesListArray.append(contentsOf: yearly)
             self.packagesListArray.append(contentsOf: monthly)
             self.packagesListArray.append(contentsOf: weekly)
-            print(packagesListArray.count)
             reloadData()
         }
         
@@ -243,7 +234,7 @@ extension packagesListView :  favoritePackagesListProtocol, packagesListProtocol
     }
     
     func setLoading(isLoading: Bool) {
-        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
     }
 }
 
