@@ -21,6 +21,7 @@ class packagesListView : UIView  {
     private var searching                = false
     private var sorting                  = false
     private let cellID                   = "cell"
+    var test = 0
     let service                          = packagesService()
     lazy var tableView                   = UITableView()
     lazy var searchBar                   : UISearchBar = {
@@ -36,6 +37,7 @@ class packagesListView : UIView  {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         self.backgroundColor = .white
         addSubview(searchBar)
         addSubview(tableView)
@@ -48,6 +50,7 @@ class packagesListView : UIView  {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(packagesCell.self, forCellReuseIdentifier: cellID)
+       
         
     }
     
@@ -260,6 +263,7 @@ extension packagesListView : sortPackagesProtocol {
             searchFavoritePackages = packagesFavoriteArray.sorted(by: { $1.tariff.talk < $0.tariff.talk })
             sorting = true
             reloadData()
+            test = 55
             break
         default:
             break
